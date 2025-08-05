@@ -1,0 +1,126 @@
+digraph G { 
+    label = "Net Lab";
+    labelloc = top;
+ 
+    node [shape=record];
+    edge [dir=both];
+subgraph cluster_0 {
+		label = poste;
+	
+        "poste-eth0" [label=<
+            <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+                <tr><td bgcolor="lightblue"><b>poste-eth0</b></td></tr>
+                <tr><td align="left">IP: 10.10.10.100/24</td></tr>
+            </table>
+        >];
+	}
+subgraph cluster_1 {
+		label = rout1;
+	
+        "rout1-eth0" [label=<
+            <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+                <tr><td bgcolor="lightblue"><b>rout1-eth0</b></td></tr>
+                <tr><td align="left">IP: 10.10.10.254/24</td></tr>
+            </table>
+        >];
+        "rout1-eth1" [label=<
+            <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+                <tr><td bgcolor="lightblue"><b>rout1-eth1</b></td></tr>
+                <tr><td align="left">IP: 172.16.1.253/24</td></tr>
+            </table>
+        >];
+	}
+subgraph cluster_2 {
+		label = rout2;
+	
+        "rout2-eth0" [label=<
+            <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+                <tr><td bgcolor="lightblue"><b>rout2-eth0</b></td></tr>
+                <tr><td align="left">IP: 172.16.1.254/24</td></tr>
+            </table>
+        >];
+        "rout2-eth1" [label=<
+            <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+                <tr><td bgcolor="lightblue"><b>rout2-eth1</b></td></tr>
+                <tr><td align="left">IP: 192.168.100.253/24</td></tr>
+            </table>
+        >];
+	}
+subgraph cluster_3 {
+		label = rout3;
+	
+        "rout3-eth0" [label=<
+            <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+                <tr><td bgcolor="lightblue"><b>rout3-eth0</b></td></tr>
+                <tr><td align="left">IP: 10.10.10.253/24</td></tr>
+            </table>
+        >];
+        "rout3-eth1" [label=<
+            <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+                <tr><td bgcolor="lightblue"><b>rout3-eth1</b></td></tr>
+                <tr><td align="left">IP: 10.0.0.254/24</td></tr>
+            </table>
+        >];
+	}
+subgraph cluster_4 {
+		label = rout4;
+	
+        "rout4-eth0" [label=<
+            <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+                <tr><td bgcolor="lightblue"><b>rout4-eth0</b></td></tr>
+                <tr><td align="left">IP: 192.168.100.252/24</td></tr>
+            </table>
+        >];
+        "rout4-eth1" [label=<
+            <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+                <tr><td bgcolor="lightblue"><b>rout4-eth1</b></td></tr>
+                <tr><td align="left">IP: 10.0.0.253/24</td></tr>
+            </table>
+        >];
+	}
+subgraph cluster_5 {
+		label = resA;
+	
+        "resA" [label=<
+            <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+                <tr><td bgcolor="orange"><b>resA</b></td></tr>
+            </table>
+        >];
+	}
+subgraph cluster_6 {
+		label = resB;
+	
+        "resB" [label=<
+            <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+                <tr><td bgcolor="orange"><b>resB</b></td></tr>
+            </table>
+        >];
+	}
+subgraph cluster_7 {
+		label = resC;
+	
+        "resC" [label=<
+            <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+                <tr><td bgcolor="orange"><b>resC</b></td></tr>
+            </table>
+        >];
+	}
+subgraph cluster_8 {
+		label = resD;
+	
+        "resD" [label=<
+            <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+                <tr><td bgcolor="orange"><b>resD</b></td></tr>
+            </table>
+        >];
+	}
+ "resA"->"poste-eth0"; 
+ "resA"->"rout1-eth0"; 
+ "resB"->"rout1-eth1"; 
+ "resB"->"rout2-eth0"; 
+ "resC"->"rout2-eth1"; 
+ "resA"->"rout3-eth0"; 
+ "resD"->"rout3-eth1"; 
+ "resC"->"rout4-eth0"; 
+ "resD"->"rout4-eth1"; 
+}

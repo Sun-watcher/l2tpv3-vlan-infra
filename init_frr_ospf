@@ -1,0 +1,8 @@
+#!/bin/bash -x
+
+for i in $(seq 1 4)
+do
+  mkdir -p /etc/netns/rout${i}/frr/rout${i}
+  cp frr_ospf/* /etc/netns/rout${i}/frr/rout${i}/ 
+  chown -R frr:frr /etc/netns/rout${i}/frr
+done

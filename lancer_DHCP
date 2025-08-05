@@ -1,0 +1,36 @@
+#!/bin/bash -x
+
+#-----DHCP------
+# Creation du fichier de config
+mkdir -p /etc/netns/rout1/
+touch /etc/netns/rout1/dnsmasq.conf
+
+# Configuration
+cat > /etc/netns/rout1/dnsmasq.conf <<EOF
+interface=pont
+dhcp-range=192.168.100.10,192.168.100.100,12h
+bind-interfaces
+
+dhcp-range=192.168.200.10,192.168.200.100,255.255.255.0,12h
+bind-interfaces
+port=0
+EOF
+
+# Lancer le serveur DHCP
+ip netns exec rout1 pkill dnsmasq
+ip netns exec rout1 dnsmasq --conf-file=/etc/netns/rout1/dnsmasq.conf 
+
+sleep 2
+
+# Flush les adresses ip
+
+ip netns exec poste1 ip addr flush dev poste1-eth0
+ip netns exec poste2 ip addr flush dev poste2-eth0
+ip netns exec poste3 ip addr flush dev poste3-eth0
+ip netns exec poste4 ip addr flush dev poste4-eth0
+
+# Demander une adresse ip
+ip netns exec poste1 dhclient -v poste1-eth0
+ip netns exec poste2 dhclient -v poste2-eth0
+ip netns exec poste3 dhclient -v poste3-eth0
+ip netns exec poste4 dhclient -v poste4-eth0
